@@ -7,8 +7,6 @@
 }
 
 body {
-  display: flex;
-  flex-direction: column;
   margin: 0;
   min-height: 100svh;
 }
@@ -107,11 +105,11 @@ body {
 }
 
 /* Child elements, by default, are constrained to the central column of the grid. */
-.shopify-section > * {
+/* .shopify-section > * {
   grid-column: 2;
-}
+} */
 
 /* Child elements that use the full-width utility class span the entire viewport. */
-.shopify-section > .full-width {
+/* .shopify-section > .full-width {
   grid-column: 1 / -1;
-}
+} */
