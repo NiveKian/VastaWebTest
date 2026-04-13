@@ -31,7 +31,9 @@
     "sidebar": "Sidebar",
     "text": "Text",
     "theme": "Theme",
-    "typography": "Typography"
+    "typography": "Typography",
+    "top-bar": "Top bar",
+    "navigation": "Navigation",
   },
   "labels": {
     "alignment": "Alignment",

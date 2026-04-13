@@ -1,8 +1,5 @@
 {
   "sections": {
-    "header": {
-      "type": "header"
-    },
     "banner": {
       "type": "banner"
     },
@@ -26,13 +23,9 @@
     },
     "faqs": {
       "type": "faqs"
-    },
-    "footer": {
-      "type": "footer"
     }
   },
   "order": [
-    "header",
     "banner",
     "shopCarrossel",
     "uvps",
@@ -41,6 +34,5 @@
     "review",
     "bestSell2",
     "faqs",
-    "footer"
   ]
 }

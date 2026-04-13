@@ -1,0 +1,88 @@
+{% layout 'gift_card' %}
+
+{% comment %} 
+  Gift card template 
+  Displays the gift card information and balance 
+{% endcomment %}
+
+<div class="gift-card">
+  <div class="gift-card__container"></div>
+</div>
+
+{% style %}
+  .gift-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 2rem;
+  }
+
+  .gift-card__container {
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  }
+
+  .gift-card__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .gift-card__card {
+    margin-bottom: 2rem;
+  }
+
+  .gift-card__image {
+    width: 100%;
+    height: auto;
+  }
+
+  .gift-card__placeholder {
+    background: #f5f5f5;
+    padding: 3rem;
+    border-radius: 8px;
+  }
+
+  .gift-card__placeholder-svg {
+    width: 100%;
+    height: auto;
+  }
+
+  .gift-card__info {
+    margin-bottom: 2rem;
+  }
+
+  .gift-card__label {
+    color: #666;
+    margin-bottom: 0.5rem;
+  }
+
+  .gift-card__balance {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+  }
+
+  .gift-card__code {
+    font-family: monospace;
+    font-size: 1.25rem;
+    letter-spacing: 0.1em;
+  }
+
+  .gift-card__actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .gift-card__expires {
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  .gift-card__error {
+    color: #dc3545;
+  }
+{% endstyle %}

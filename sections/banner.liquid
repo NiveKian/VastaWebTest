@@ -1,0 +1,282 @@
+<section class="banner full-width">
+
+  <div class="banner__container">
+
+    <!-- LEFT: Content -->
+    <div class="banner__content">
+
+      <!-- Text block -->
+      <div class="banner__texts">
+
+        <!-- Reviews -->
+        <div class="banner__reviews">
+          <span>{{ section.settings.review_text }}</span>
+
+          <div class="banner__stars">
+            {% for i in (1..5) %}
+              <img
+                src="{{ 'icons/star.svg' | asset_url }}"
+                alt="star"
+                width="10"
+                height="10">
+            {% endfor %}
+          </div>
+        </div>
+
+        <!-- Title -->
+        <h1 class="banner__title">
+          {{ section.settings.title }}
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="banner__subtitle">
+          {{ section.settings.subtitle }}
+        </p>
+
+      </div>
+
+      <!-- Button -->
+      <div class="banner__cta">
+        <a href="#" class="banner__btn">
+          {{ section.settings.button_text }}
+        </a>
+      </div>
+
+    </div>
+
+    <!-- RIGHT: Image -->
+    <div class="banner__media">
+
+      <div class="banner__ellipse banner__ellipse--blue"></div>
+      <div class="banner__ellipse banner__ellipse--purple"></div>
+
+      <img
+        src="{{ 'imgs/banner-image.png' | asset_url }}"
+        alt="Banner"
+        width="2000"
+        height="2000">
+    </div>
+
+  </div>
+
+</section>
+
+{% stylesheet %}
+  .banner {
+    background: var(--color-foreground);
+    margin: 1rem 0;
+  }
+
+  .banner__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: 0 3rem;
+
+    max-height: clamp(320px, 35vw, 506px);
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  /* LEFT */
+  .banner__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Reviews */
+  .banner__reviews {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    color: #fff;
+    font-size: 0.875rem;
+
+    min-width: 500px;
+  }
+
+  .banner__stars {
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  /* Title */
+  .banner__title {
+    font-weight: 700;
+    color: #fff;
+
+    font-size: 2.8rem;
+    /* ~45px max */
+  }
+
+  /* Subtitle */
+  .banner__subtitle {
+    color: #fff;
+    font-weight: 400;
+
+    font-size: 1.125rem;
+    /* ~18px max */
+  }
+
+  /* Button */
+  .banner__btn {
+    display: inline-block;
+
+    background: var(--color-brand-primary);
+    color: #fff;
+
+    padding: 1.25rem 2.25rem;
+    /* 20px 36px */
+    border-radius: 109px;
+
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .banner__btn:hover {
+    opacity: 0.85;
+  }
+
+  /* RIGHT */
+
+  .banner__media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .banner__ellipse {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .banner__ellipse--blue {
+    width: clamp(300px, 40vw, 700px);
+    height: clamp(300px, 40vw, 700px);
+
+    background: radial-gradient(circle, #052F5F 0%, transparent 50%);
+
+    right: 0;
+    top: 10%;
+  }
+
+  .banner__ellipse--purple {
+    width: clamp(350px, 45vw, 800px);
+    height: clamp(350px, 45vw, 800px);
+
+    background: radial-gradient(circle, rgba(87, 60, 162, 0.8) 0%, transparent 50%);
+
+    right: -20%;
+    bottom: -15%;
+  }
+
+  .banner__media img {
+    position: relative;
+    z-index: 2;
+
+    width: clamp(800px, 120vw - 200px, 1200px);
+    min-width: 600px;
+    margin-top: 20%;
+  }
+
+  @media (max-width: 1024px) {
+    .banner__container {
+      padding: 3rem;
+    }
+
+    .banner__title {
+      font-size: 2.2rem;
+    }
+
+    .banner__subtitle {
+      font-size: 1rem;
+    }
+
+    .banner__media img {
+      padding-top: 0;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .banner__container {
+      max-height: 720px;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-height: auto;
+      padding: 2rem var(--page-margin);
+    }
+
+    .banner__texts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .banner__reviews {
+      min-width: auto;
+    }
+
+    .banner__title {
+      font-size: 1.8rem;
+    }
+
+    .banner__subtitle {
+      font-size: 1rem;
+    }
+
+    .banner__ellipse--blue {
+      background: radial-gradient(circle, #052F5F 0%, transparent 70%);
+      right: 10%;
+      top: 10%;
+    }
+
+    .banner__ellipse--purple {
+      background: radial-gradient(circle, rgba(87, 60, 162, 0.8) 0%, transparent 70%);
+      right: -10%;
+      bottom: -5%;
+    }
+
+    .banner__media img {
+      margin-top: 0;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "banner",
+    "settings": [
+      {
+        "type": "text",
+        "id": "review_text",
+        "label": "Review text",
+        "default": "With 1600+ 5-star reviews"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Lorem ipsum dolor sit amet consectetur"
+      }, {
+        "type": "text",
+        "id": "subtitle",
+        "label": "Subtitle",
+        "default": "Lorem ipsum dolor sit amet consectetur. Elit elementum rhoncus"
+      }, {
+        "type": "text",
+        "id": "button_text",
+        "label": "Button text",
+        "default": "View More"
+      }
+    ]
+  }
+{% endschema %}

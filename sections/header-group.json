@@ -16,9 +16,23 @@
       "settings": {
         "menu": ""
       }
+    },
+    "topbar": {
+      "type": "top-bar",
+      "settings": {
+        "menu": ""
+      }
+    },
+    "navigation": {
+      "type": "navigation",
+      "settings": {
+        "menu": ""
+      }
     }
   },
   "order": [
-    "header"
+    "topbar",
+    "header",
+    "navigation"
   ]
 }

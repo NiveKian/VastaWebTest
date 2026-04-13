@@ -1,0 +1,325 @@
+<section class="shop-carousel">
+
+  <!-- TEXT -->
+  <div class="shop-carousel__header">
+    <h2 class="shop-carousel__title">
+      {{ section.settings.title }}
+    </h2>
+  </div>
+
+  <!-- CAROUSEL WRAPPER -->
+  <div class="shop-carousel__wrapper">
+
+    <!-- LEFT BUTTON -->
+    <button class="shop-carousel__btn shop-carousel__btn--left">
+      <img
+        src="{{ 'icons/arrow-left.svg' | asset_url }}"
+        width="18"
+        height="18"
+        alt="left">
+    </button>
+
+    <!-- TRACK -->
+    <div class="shop-carousel__track" id="shopCarouselTrack">
+      {% if section.blocks.size > 0 %}
+        {% for block in section.blocks %}
+          <div class="shop-carousel__card">
+            {% if block.settings.image != blank %}
+              <img
+                src="{{ block.settings.image | image_url: width: 800 }}"
+                alt="{{ block.settings.label | escape }}"
+                width="243"
+                height="363">
+            {% endif %}
+            <span>{{ block.settings.label }}</span>
+          </div>
+        {% endfor %}
+      {% else %}
+        {% for i in (1..6) %}
+          <div class="shop-carousel__card">
+            <img
+              src="{{ 'imgs/collection-' | append: i | append: '.png' | asset_url }}"
+              alt="Default collection {{ i }}"
+              width="243"
+              height="363">
+            <span>Lorem Ipsum</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    </div>
+
+    <!-- RIGHT BUTTON -->
+    <button class="shop-carousel__btn shop-carousel__btn--right">
+      <img
+        src="{{ 'icons/arrow-left.svg' | asset_url }}"
+        width="18"
+        height="18"
+        style="transform: rotate(180deg);"
+        alt="right">
+    </button>
+
+  </div>
+
+</section>
+
+{% stylesheet %}
+  .shop-carousel {
+    background: var(--color-background);
+    height: clamp(350px, 36vw, 518px);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 2rem var(--page-margin);
+
+    gap: 2rem;
+  }
+
+  /* TITLE */
+  .shop-carousel__title {
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    /* 36px */
+    font-weight: 700;
+    color: var(--color-foreground);
+  }
+
+  /* WRAPPER */
+  .shop-carousel__wrapper {
+    position: relative;
+    width: 100%;
+    max-width: min(1170px, calc(100% - 2 * var(--page-margin)));
+    margin: 0 auto;
+  }
+
+  /* TRACK (scroll slider) */
+  .shop-carousel__track {
+    display: flex;
+    gap: 1.5rem;
+
+    overflow-x: auto;
+    scroll-behavior: smooth;
+
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    padding: 0 40%;
+
+    cursor: grab;
+    user-select: none;
+  }
+
+  .shop-carousel__track {
+    cursor: grabbing;
+  }
+
+  .shop-carousel__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* CARD */
+  .shop-carousel__card {
+    scroll-snap-align: center;
+    flex: 0 0 auto;
+
+    width: clamp(180px, 17vw, 243px);
+    height: clamp(260px, 25vw, 363px);
+
+    position: relative;
+    border-radius: 13px;
+    overflow: hidden;
+  }
+
+  .shop-carousel__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 13px;
+  }
+
+  /* TEXT INSIDE CARD */
+  .shop-carousel__card span {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+
+    font-size: clamp(1rem, 1.5vw, 1.5rem);
+    /* 24px */
+    font-weight: 500;
+    color: #fff;
+  }
+
+  /* BUTTONS */
+  .shop-carousel__btn {
+    position: absolute;
+    z-index: 10;
+
+    top: 50%;
+    transform: translateY(-50%);
+
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(8px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+  }
+
+  .shop-carousel__btn--left {
+    left: 0;
+  }
+
+  .shop-carousel__btn--right {
+    right: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "Shop Carousel",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Lorem Ipsum"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "card",
+        "name": "Carousel Card",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          }, {
+            "type": "text",
+            "id": "label",
+            "label": "Text",
+            "default": "Lorem Ipsum"
+          }
+        ]
+      }
+    ],
+    "max_blocks": 12,
+    "presets": [
+      {
+        "name": "Shop Carousel",
+        "blocks": [
+          {
+            "type": "card"
+          },
+          {
+            "type": "card"
+          },
+          {
+            "type": "card"
+          },
+          {
+            "type": "card"
+          }, {
+            "type": "card"
+          }, {
+            "type": "card"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const track = document.getElementById("shopCarouselTrack");
+    const cards = track.querySelectorAll(".shop-carousel__card");
+  
+    let currentIndex = 0;
+  
+    // =========================
+    // Scroll to card (center)
+    // =========================
+    const scrollToCard = (index) => {
+      const card = cards[index];
+      if (!card) return;
+    
+      card.scrollIntoView({
+        behavior: "smooth",
+        inline: "center",
+        block: "nearest"
+      });
+    };
+    
+    // init
+    scrollToCard(2);
+    currentIndex = 2;
+    
+    // =========================
+    // BUTTONS (index based)
+    // =========================
+    document.querySelector(".shop-carousel__btn--left")
+      .addEventListener("click", () => {
+        currentIndex = Math.max(0, currentIndex - 1);
+        scrollToCard(currentIndex);
+    });
+    
+    document.querySelector(".shop-carousel__btn--right")
+      .addEventListener("click", () => {
+        currentIndex = Math.min(cards.length - 1, currentIndex + 1);
+        scrollToCard(currentIndex);
+    });
+  
+    // =========================
+    // TOUCH SUPPORT
+    // =========================
+    let touchStartX = 0;
+    let touchScrollLeft = 0;
+  
+    track.addEventListener("touchstart", (e) => {
+      touchStartX = e.touches[0].pageX;
+      touchScrollLeft = track.scrollLeft;
+    });
+  
+    track.addEventListener("touchmove", (e) => {
+      const x = e.touches[0].pageX;
+      const walk = x - touchStartX;
+  
+      track.scrollLeft = touchScrollLeft - walk;
+    });
+  
+    track.addEventListener("touchend", () => {
+      syncIndex();
+    });
+  
+    // =========================
+    // SYNC INDEX AFTER DRAG
+    // =========================
+    const syncIndex = () => {
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+  
+      cards.forEach((card, i) => {
+        const rect = card.getBoundingClientRect();
+        const distance = Math.abs(rect.left + rect.width / 2 - window.innerWidth / 2);
+  
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = i;
+        }
+      });
+  
+      currentIndex = closestIndex;
+      scrollToCard(currentIndex);
+    };
+  });
+</script>

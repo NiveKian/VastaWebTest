@@ -17,7 +17,7 @@
       {
         "type": "font_picker",
         "id": "type_primary_font",
-        "default": "work_sans_n4",
+        "default": "dm_sans_n4",
         "label": "t:general.primary"
       }
     ]
@@ -65,12 +65,12 @@
       {
         "type": "color",
         "id": "foreground_color",
-        "default": "#000000",
+        "default": "#17171A", 
         "label": "t:labels.foreground"
       },
       {
         "type": "color",
-        "id": "brand_color",
+        "id": "brand_primary_color",
         "default": "#00AC4F",
         "label": "t:labels.brand"
       },

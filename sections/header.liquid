@@ -1,8 +1,194 @@
-<header>
-  <div></div>
+<header class="header full-width" role="banner">
+  <div class="header__container">
+
+    <!-- Mobile Menu -->
+    <div class="header__menu">
+      <img
+        src="{{ 'icons/menu.svg' | asset_url }}"
+        alt="Menu"
+        width="20"
+        height="20">
+      <span>MENU</span>
+    </div>
+
+    <!-- Logo + Search + Cart -->
+    <div class="header__main">
+      <!-- Logo -->
+      <div class="header__logo">
+        <img
+          src="{{ 'icons/logo-vasta.svg' | asset_url }}"
+          alt="Vasta Logo"
+          width="120"
+          height="40">
+      </div>
+
+      <!-- Search -->
+      <div class="header__search">
+        <input
+          type="text"
+          placeholder="Search"
+          class="header__search-input">
+        <button class="header__search-button">
+          <span>Search</span>
+          <img
+            src="{{ 'icons/search.svg' | asset_url }}"
+            alt="Search"
+            width="16"
+            height="16">
+        </button>
+      </div>
+
+      <!-- Cart -->
+      <div class="header__cart">
+        <img
+          src="{{ 'icons/cart.svg' | asset_url }}"
+          alt="Cart"
+          width="30"
+          height="30">
+        <span>CART</span>
+      </div>
+    </div>
+
+    <!-- Cart -->
+    <div class="header__cart--mobile">
+      <img
+        src="{{ 'icons/cart.svg' | asset_url }}"
+        alt="Cart"
+        width="30"
+        height="30">
+      <span>CART</span>
+    </div>
+  </div>
 </header>
 
 {% stylesheet %}
+  .header {
+    background: var(--color-background);
+    min-height: clamp(70px, 6.8vw, 98px);
+    display: flex;
+    align-items: center;
+  }
+
+  .header__container {
+    max-width: var(--page-width);
+    margin: 0 auto;
+    padding: var(--page-margin);
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header__menu {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.75rem;
+    gap: 0.25rem;
+    cursor: pointer;
+  }
+
+  .header__main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 2rem;
+    width: 100%;
+    height: clamp(70px, 6.8vw, 98px);
+    padding: 0 5rem 0 0;
+  }
+
+  .header__search {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #252525;
+    border-radius: 999px;
+    width: 80%;
+    max-width: 700px;
+  }
+
+  .header__search-input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0.5rem 0.75rem;
+    color: var(--color-foreground);
+    outline: none;
+  }
+
+  .header__search-input::placeholder {
+    font-size: clamp(0.75rem, 1.1vw, 1rem);
+    color: #C2C3CC;
+  }
+
+  .header__search-button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: var(--color-background);
+    font-size: clamp(0.875rem, 1.4vw, 1.25rem);
+    border-radius: 999px;
+    border-left: 2px solid #252525;
+    padding: 0.4rem 2rem;
+    cursor: pointer;
+  }
+
+  .header__logo {
+    cursor: pointer;
+  }
+
+  .header__cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 0.75rem;
+    gap: 0.25rem;
+    cursor: pointer;
+  }
+
+  .header__cart--mobile {
+    display: none;
+  }
+
+
+  @media (max-width: 1024px) {
+    .header__menu {
+      display: flex;
+    }
+
+    .header__container {
+      align-items: flex-start;
+    }
+
+    .header__main {
+      flex-direction: column;
+      align-items: center;
+      padding: 0;
+      gap: 1rem;
+    }
+
+    .header__search {
+      width: 75%;
+      min-width: 400px;
+      max-width: none;
+    }
+
+    .header__cart {
+      display: none;
+    }
+
+    .header__cart--mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      gap: 0.25rem;
+      cursor: pointer;
+    }
+  }
 
 {% endstylesheet %}
 
