@@ -1,0 +1,340 @@
+<!-- Checks if the background is defined in blocks or use preset -->
+{% assign bg_image = section.settings.bg_image %}
+{% if bg_image != blank %}
+  console.log("test");
+  {% assign bg_url = bg_image | image_url %}
+{% else %}
+  {% assign bg_url = 'imgs/social-background.png' | asset_url %}
+{% endif %}
+
+<section class="social-prof full-width" style="--bg-image: url('{{ bg_url }}')">
+
+  <div class="social-prof__container">
+
+    <!-- EXPLORE -->
+    <div class="social-prof__explore">
+      <h2>{{ section.settings.title }}</h2>
+      <p>{{ section.settings.subtitle }}</p>
+
+      <a href="#" class="social-prof__btn">
+        {{ section.settings.button_text }}
+      </a>
+    </div>
+
+    <!-- COMMENTS -->
+    <div class="social-prof__comments">
+
+      {% if section.blocks.size > 0 %}
+
+        {% for block in section.blocks %}
+
+          <div class="social-prof__comment">
+
+            <!-- PERSON -->
+            <div class="social-prof__persona">
+
+              {% if block.settings.image != blank %}
+                <img
+                  src="{{ block.settings.image | image_url: width: 150 }}"
+                  width="65"
+                  height="65"
+                  alt="persona">
+              {% else %}
+                <img
+                  src="{{ 'imgs/persona.png' | asset_url }}"
+                  width="65"
+                  height="65"
+                  alt="persona">
+              {% endif %}
+
+              <div>
+                <span>{{ block.settings.name }}</span>
+
+                <div class="stars">
+                  {% for i in (1..5) %}
+                    <img
+                      src="{{ 'icons/star.svg' | asset_url }}"
+                      width="12"
+                      height="12">
+                  {% endfor %}
+                </div>
+              </div>
+
+            </div>
+
+            <!-- TEXT -->
+            <p class="social-prof__text">
+              {{ block.settings.text }}
+            </p>
+
+          </div>
+
+        {% endfor %}
+
+      {% else %}
+
+        <!-- FALLBACK -->
+
+        {% for i in (1..2) %}
+          <div class="social-prof__comment">
+
+            <div class="social-prof__persona">
+              <img
+                src="{{ 'imgs/persona.png' | asset_url }}"
+                width="65"
+                height="65">
+
+              <div class="social-prof__persona-side">
+                <span>John R.</span>
+                <div class="stars">
+                  {% for i in (1..5) %}
+                    <img
+                      src="{{ 'icons/star.svg' | asset_url }}"
+                      width="12"
+                      height="12">
+                  {% endfor %}
+                </div>
+              </div>
+            </div>
+
+            <p class="social-prof__text">
+              Lorem ipsum dolor sit amet consectetur. Volutpat fames diam volutpat a. Ultricies lacinia eu cras massa odio
+            </p>
+
+          </div>
+        {% endfor %}
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</section>
+
+{% stylesheet %}
+  .social-prof {
+    position: relative;
+    height: clamp(400px, 46vw, 666px);
+    color: #fff;
+    display: flex;
+    align-items: center;
+  }
+
+  /* BACKGROUND IMAGE + GRADIENT */
+  .social-prof::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 30%), linear-gradient(0.21deg, rgba(0, 0, 0, 0.9) 9.2%, transparent 45.55%), linear-gradient(73.01deg, rgba(0, 0, 0, 0.9) 34.28%, transparent 45.81%), var(--bg-image);
+    background-size: cover;
+    background-position: center
+    , center
+    , center
+    , calc(50% + 200px) center;
+
+    z-index: 0;
+  }
+
+  .social-prof__container {
+    position: relative;
+    z-index: 1;
+
+    max-width: var(--page-width);
+    padding: 0 var(--page-margin);
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  /* EXPLORE */
+  .social-prof__explore {
+    text-align: center;
+  }
+
+  .social-prof__explore h2 {
+    font-weight: 700;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    /* ~45px */
+  }
+
+  .social-prof__explore p {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    /* ~20px */
+    margin-top: 0.5rem;
+  }
+
+  /* BUTTON */
+  .social-prof__btn {
+    display: inline-block;
+    margin-top: 1rem;
+
+    background: var(--color-brand-primary);
+    color: #fff;
+
+    padding: 1.25rem 2.25rem;
+    border-radius: 109px;
+
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .social-prof__btn:hover {
+    opacity: 0.85;
+  }
+
+  /* COMMENTS */
+  .social-prof__comments {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    width: 100%;
+  }
+
+  .social-prof__comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    max-width: 400px;
+
+    margin: 0 5rem;
+  }
+
+  /* PERSONA */
+  .social-prof__persona {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .social-prof__persona span {
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 500;
+  }
+
+  .social-prof__persona img {
+    border-radius: 50%;
+  }
+
+  .stars {
+    width: clamp(10px, 0.97vw, 14px);
+    height: clamp(10px, 0.97vw, 14px);
+    display: flex;
+    gap: 0.2rem;
+  }
+
+  /* TEXT */
+  .social-prof__text {
+    margin-top: 1rem;
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 400;
+  }
+
+  /* TABLET */
+  @media (max-width: 1024px) {
+    .social-prof {
+      min-height: clamp(400px, 73.7vh, 566px);
+    }
+
+    .social-prof::before {
+      background: linear-gradient(180deg, #000000 26.79%, rgba(0, 0, 0, 0) 70.73%), linear-gradient(270deg, #000000 10%, rgba(0, 0, 0, 0) 30%, #000000 103.2%), var(--bg-image);
+      background-size: cover;
+      background-position: center
+      , center, calc(50% - 100px) calc(50% + 100px);
+      /* calc1 = eixo x; calc2 = eixo y */
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .social-prof {
+      min-height: clamp(500px, 155.7vh, 584px);
+    }
+
+    .social-prof::before {
+      background: linear-gradient(180deg, #000000 24.48%, rgba(0, 0, 0, 0) 70.73%, #000000 103.2%), var(--bg-image);
+      background-size: cover;
+      background-position: center, calc(50% - 0px) calc(50% + 100px);
+      /* calc1 = eixo x; calc2 = eixo y */
+    }
+
+    .social-prof__comments {
+      justify-content: center;
+    }
+
+    .social-prof__comment:nth-child(2) {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "Social Proof",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "default": "Cherished Favorites",
+        "label": "Title"
+      }, {
+        "type": "text",
+        "id": "subtitle",
+        "default": "Explore the Harmony of Exceptional Quality and Customer Praise",
+        "label": "Subtitle"
+      }, {
+        "type": "text",
+        "id": "button_text",
+        "default": "View More",
+        "label": "Button text"
+      }, {
+        "type": "image_picker",
+        "id": "bg_image",
+        "label": "Background image",
+        "info": "For optimal display, use an image with a width of at least 1200px."
+      }
+    ],
+    "blocks": [
+      {
+        "type": "comment",
+        "name": "Comment",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Persona image"
+          }, {
+            "type": "text",
+            "id": "name",
+            "default": "John R.",
+            "label": "Name"
+          }, {
+            "type": "text",
+            "id": "text",
+            "default": "Lorem ipsum dolor sit amet consectetur. Volutpat fames diam volutpat a. Ultricies lacinia eu cras massa odio",
+            "label": "Review text"
+          }
+        ]
+      }
+    ],
+    "max_blocks": 2,
+    "presets": [
+      {
+        "name": "Social Proof",
+        "blocks": [
+          {
+            "type": "comment"
+          }, {
+            "type": "comment"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

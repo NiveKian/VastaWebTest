@@ -1,0 +1,233 @@
+<section class="uvps full-width">
+
+  <div class="uvps__container">
+
+    <!-- TITLE -->
+    <h2 class="uvps__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <!-- UVP WRAPPER -->
+    <div class="uvps__wrapper">
+
+      <!-- Checks for empty blocks in  the theme -->
+      {% if section.blocks.size > 0 %}
+
+        {% for block in section.blocks %}
+
+          <div class="uvps__item">
+
+            <img
+              src="{{ block.settings.icon | image_url: width: 150 }}"
+              width="74"
+              height="74"
+              alt="icon">
+
+            <p>{{ block.settings.text }}</p>
+
+          </div>
+
+          {% unless forloop.last %}
+            <div class="uvps__divider"></div>
+          {% endunless %}
+
+        {% endfor %}
+
+      {% else %}
+
+        <!-- DEV FALLBACK -->
+        <div class="uvps__item">
+          <img
+            src="{{ 'icons/Shipping.svg' | asset_url }}"
+            width="74"
+            height="74">
+          <p>Lorem ipsum dolor sit amet consectetur</p>
+        </div>
+
+        <div class="uvps__divider"></div>
+
+        <div class="uvps__item">
+          <img
+            src="{{ 'icons/Person.svg' | asset_url }}"
+            width="74"
+            height="74">
+          <p>Lorem ipsum dolor sit amet consectetur</p>
+        </div>
+
+        <div class="uvps__divider"></div>
+
+        <div class="uvps__item">
+          <img
+            src="{{ 'icons/hand-holding-seeding.svg' | asset_url }}"
+            width="74"
+            height="74">
+          <p>Lorem ipsum dolor sit amet consectetur</p>
+        </div>
+
+        <div class="uvps__divider"></div>
+
+        <div class="uvps__item">
+          <img
+            src="{{ 'icons/tags.svg' | asset_url }}"
+            width="74"
+            height="74">
+          <p>Lorem ipsum dolor sit amet consectetur</p>
+        </div>
+
+      {% endif %}
+
+    </div>
+
+  </div>
+
+</section>
+
+{% stylesheet %}
+  .uvps {
+    background: #F6F5F5;
+    height: clamp(250px, 24vw, 344px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 5rem 2rem;
+  }
+
+  .uvps__container {
+    max-width: var(--page-width);
+    width: 100%;
+    padding: 0 var(--page-margin);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* TITLE */
+  .uvps__title {
+    font-weight: 700;
+    font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+    text-align: center;
+    color: var(--color-foreground);
+  }
+
+  /* WRAPPER */
+  .uvps__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ITEM */
+  .uvps__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    gap: 1rem;
+    padding: 0 1.5rem;
+  }
+
+  .uvps__item p {
+    font-size: clamp(0.875rem, 1.2vw, 1.125rem);
+    /* ~18px */
+    font-weight: 400;
+    color: var(--color-foreground);
+    max-width: 220px;
+  }
+
+  /* ICON */
+  .uvps__item img {
+    width: 74px;
+    height: 74px;
+    object-fit: contain;
+  }
+
+  /* DIVIDER */
+  .uvps__divider {
+    width: 1px;
+    height: 148px;
+    background: #0000001A;
+  }
+
+  /* ===================== */
+  /* MOBILE (2x2 GRID) */
+  /* ===================== */@media (max-width: 600px) {
+
+    .uvps {
+      height: auto;
+      padding: 2rem 0;
+    }
+
+    .uvps__wrapper {
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .uvps__item {
+      width: 45%;
+      padding: 0;
+    }
+
+    .uvps__divider {
+      display: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+  {
+    "name": "UVPs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Shop Smarter, Shop With Vasta"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "uvp",
+        "name": "UVP Item",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "icon",
+            "label": "Icon"
+          }, {
+            "type": "text",
+            "id": "fallback_icon",
+            "label": "Fallback icon (asset path)",
+            "default": "icons/Shipping.svg"
+          }, {
+            "type": "text",
+            "id": "text",
+            "label": "Text",
+            "default": "Lorem ipsum dolor sit amet consectetur"
+          }
+        ]
+      }
+    ],
+    "max_blocks": 4,
+    "presets": [
+      {
+        "name": "UVPs",
+        "blocks": [
+          {
+            "type": "uvp"
+          }, {
+            "type": "uvp"
+          }, {
+            "type": "uvp"
+          }, {
+            "type": "uvp"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
