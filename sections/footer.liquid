@@ -1,23 +1,574 @@
-<footer></footer>
+<footer class="footer full-width">
+  <div class="footer__container">
+    <!-- ===================== -->
+    <!-- CONTACT -->
+    <!-- ===================== -->
+    <div class="footer__contact">
+      <!-- LOGO -->
+      <img
+        src="{{ section.settings.logo | default: 'icons/logo-vasta-white.svg' | asset_url }}"
+        alt="logo"
+        class="footer__logo"
+        width="169"
+        height="50"
+      >
+
+      <!-- EMAIL -->
+      <div class="footer__newsletter">
+        <p>{{ section.settings.newsletter_text }}</p>
+
+        <div class="footer__input-group">
+          <input type="email" placeholder="{{ section.settings.placeholder }}">
+          <button>{{ section.settings.button_text }}</button>
+        </div>
+      </div>
+
+      <!-- COLLECTIONS -->
+      <div class="footer__collections">
+        <h3>{{ section.settings.collections_title }}</h3>
+
+        <div class="footer__cards">
+          <!-- Card Block Builder -->
+          {% if section.blocks.size > 0 %}
+            {% for block in section.blocks %}
+              <div class="footer__card" {{ block.shopify_attributes }}>
+                {% if block.settings.image != blank %}
+                  {{ block.settings.image | image_url: width: 800 | image_tag: alt: block.settings.label }}
+                {% else %}
+                  <img
+                    src="{{ 'imgs/collection-1.png' | asset_url }}"
+                    width="110"
+                    height="164"
+                    alt="fallback"
+                  >
+                {% endif %}
+                <span>{{ block.settings.label }}</span>
+              </div>
+            {% endfor %}
+          {% else %}
+            <!-- FAILSAFE FOR DEVMODE -->
+            {% for i in (1..4) %}
+              <div class="footer__card">
+                <img
+                  src="{{ 'imgs/collection-' | append: i | append: '.png' | asset_url }}"
+                  width="110"
+                  height="164"
+                  alt="default collection {{ i }}"
+                >
+                <span>Lorem Ipsum</span>
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- CONTACT INFO -->
+      <div class="footer__contact-info">
+        <h3>{{ section.settings.contact_title }}</h3>
+
+        <div class="footer__contact-items">
+          <div class="footer__contact-item">
+            <img
+              src="{{ 'icons/phone.svg' | asset_url }}"
+              alt="Phone"
+              width="12"
+              height="12"
+            >
+            <span>{{ section.settings.phone }}</span>
+          </div>
+
+          <div class="footer__contact-item">
+            <img
+              src="{{ 'icons/email.svg' | asset_url }}"
+              alt="Email"
+              width="12"
+              height="12"
+            >
+            <span>{{ section.settings.email }}</span>
+          </div>
+
+          <div class="footer__contact-item">
+            <img
+              src="{{ 'icons/local.svg' | asset_url }}"
+              alt="Location"
+              width="12"
+              height="12"
+            >
+            <span>{{ section.settings.address }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================== -->
+    <!-- INFO -->
+    <!-- ===================== -->
+    <div class="footer__info">
+      <!-- INFORMATIONS -->
+      <div class="footer__informations">
+        <div class="footer__col">
+          <h4>{{ section.settings.info_title }}</h4>
+          <ul>
+            <li>{{ section.settings.info_1 }}</li>
+            <li>{{ section.settings.info_2 }}</li>
+            <li>{{ section.settings.info_3 }}</li>
+            <li>{{ section.settings.info_4 }}</li>
+          </ul>
+        </div>
+
+        <div class="footer__divider"></div>
+
+        <div class="footer__col">
+          <h4>{{ section.settings.customer_title }}</h4>
+          <ul>
+            <li>{{ section.settings.customer_1 }}</li>
+            <li>{{ section.settings.customer_2 }}</li>
+            <li>{{ section.settings.customer_3 }}</li>
+            <li>{{ section.settings.customer_4 }}</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- RIGHTS -->
+      <div class="footer__rights">
+        <div class="footer__payments">
+          <img
+            src="{{ 'payments/visa.png' | asset_url }}"
+            alt="Visa"
+            width="70"
+            height="44"
+          >
+
+          <img
+            src="{{ 'payments/amex.png' | asset_url }}"
+            alt="Amex"
+            width="70"
+            height="44"
+          >
+
+          <img
+            src="{{ 'payments/yellow.png' | asset_url }}"
+            alt="Payment method"
+            width="70"
+            height="44"
+          >
+
+          <img
+            src="{{ 'payments/shop-pay.png' | asset_url }}"
+            alt="Shop Pay"
+            width="70"
+            height="44"
+          >
+
+          <img
+            src="{{ 'payments/stripe.png' | asset_url }}"
+            alt="Stripe"
+            width="70"
+            height="44"
+          >
+        </div>
+        <p>{{ section.settings.copyright }}</p>
+      </div>
+    </div>
+  </div>
+</footer>
 
 {% stylesheet %}
+  .footer {
+    background: #17171a;
+    color: white;
+  }
 
+  .footer__container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: clamp(46px, 4.5vw, 65px) 2rem;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 0rem;
+  }
+
+  /* CONTACT */
+  .footer__contact {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .footer__logo {
+    width: clamp(120px, 12vw, 169px);
+    padding: 1rem;
+  }
+
+  /* NEWSLETTER */
+  .footer__newsletter p {
+    font-size: clamp(16px, 1.4vw, 20px);
+    padding: 1rem;
+  }
+
+  .footer__input-group {
+    display: flex;
+    border: 1px solid #f5f6fa;
+    border-radius: 69px;
+    overflow: hidden;
+  }
+
+  .footer__input-group input {
+    flex: 1;
+    padding: 0.8rem 1rem;
+    background: transparent;
+    border: none;
+    color: white;
+  }
+
+  .footer__input-group button {
+    background: var(--color-brand-primary);
+    padding: 0.8rem 1.5rem;
+    border: 1px solid white;
+    border-radius: 69px;
+    color: white;
+  }
+
+  .footer__input-group button:hover {
+    opacity: 0.85;
+  }
+
+  /* COLLECTIONS */
+  .footer__collections {
+    padding: 1rem;
+  }
+
+  .footer__collections h3 {
+    padding: 1rem 0;
+  }
+
+  .footer__cards {
+    display: flex;
+    gap: 15px;
+  }
+
+  .footer__card {
+    position: relative;
+    width: clamp(80px, 8vw, 110px);
+    height: clamp(120px, 12vw, 164px);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .footer__card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .footer__card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  }
+
+  .footer__card span {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+  }
+
+  /* CONTACT INFO */
+  .footer__contact-info {
+    padding: 1rem;
+  }
+
+  .footer__contact-items {
+    display: flex;
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .footer__contact-items div {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+  }
+
+  /* INFO */
+  .footer__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .footer__informations {
+    display: flex;
+    justify-content: space-around;
+
+    margin: 5rem 10rem 0 0;
+    gap: 10rem;
+  }
+
+  .footer__divider {
+    width: 1px;
+    background: #414141;
+    display: none;
+    margin-left: 2rem;
+  }
+
+  .footer__col h4 {
+    font-size: 20px;
+    padding: 2rem 0;
+  }
+
+  .footer__col ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  /* RIGHTS */
+  .footer__rights {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .footer__payments {
+    display: flex;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .footer__payments img {
+    width: 70px;
+    height: 44px;
+  }
+
+  /* TABLET */
+  @media (max-width: 1024px) {
+    .footer__container {
+      flex-direction: column;
+    }
+
+    .footer__collections {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer__contact-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer__contact,
+    .footer__info {
+      align-items: center;
+    }
+
+    .footer__contact-items {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .footer__divider {
+      display: block;
+    }
+
+    .footer__informations {
+      padding: 2rem 0;
+      margin: 0;
+      gap: 2rem;
+    }
+
+    .footer__informations h4 {
+      padding: 0;
+    }
+
+    .footer__rights {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  /* MOBILE */
+  @media (max-width: 600px) {
+    .footer__cards {
+      flex-wrap: wrap;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
-  {
-    "name": "t:general.footer",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "t:labels.menu"
-      }, {
-        "type": "checkbox",
-        "id": "show_payment_icons",
-        "label": "t:labels.show_payment_icons",
-        "default": true
-      }
-    ]
-  }
+{
+  "name": "t:general.footer",
+
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+
+    {
+      "type": "text",
+      "id": "newsletter_text",
+      "label": "Newsletter text",
+      "default": "Enter Your Email To Receive 15% Coupon Immediately"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Email input placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Newsletter button text",
+      "default": "Give Me 15% OFF"
+    },
+
+    {
+      "type": "text",
+      "id": "collections_title",
+      "label": "Collections title",
+      "default": "Popular Collections"
+    },
+
+    {
+      "type": "text",
+      "id": "contact_title",
+      "label": "Contact title",
+      "default": "Get In Contact"
+    },
+    {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone number",
+      "default": "+1 (715) 600-1564"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email address",
+      "default": "info@clenchfitness.com"
+    },
+    {
+      "type": "text",
+      "id": "address",
+      "label": "Address",
+      "default": "New Richmond, WI 54017"
+    },
+
+    {
+      "type": "text",
+      "id": "info_title",
+      "label": "Information column title",
+      "default": "Information"
+    },
+    {
+      "type": "text",
+      "id": "info_1",
+      "label": "Information item 1",
+      "default": "About Us"
+    },
+    {
+      "type": "text",
+      "id": "info_2",
+      "label": "Information item 2",
+      "default": "Blog"
+    },
+    {
+      "type": "text",
+      "id": "info_3",
+      "label": "Information item 3",
+      "default": "Lorem Ipsum"
+    },
+    {
+      "type": "text",
+      "id": "info_4",
+      "label": "Information item 4",
+      "default": "Lorem Ipsum"
+    },
+
+    {
+      "type": "text",
+      "id": "customer_title",
+      "label": "Customer Care title",
+      "default": "Customer Care"
+    },
+    {
+      "type": "text",
+      "id": "customer_1",
+      "label": "Customer Care item 1",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "customer_2",
+      "label": "Customer Care item 2",
+      "default": "Terms of Service"
+    },
+    {
+      "type": "text",
+      "id": "customer_3",
+      "label": "Customer Care item 3",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "text",
+      "id": "customer_4",
+      "label": "Customer Care item 4",
+      "default": "Accessibility"
+    },
+
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright text",
+      "default": "Copyright © 2023 Clench Fitness. All Right Reserved."
+    }
+  ],
+
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Collection Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Card image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Card label",
+          "default": "Lorem Ipsum"
+        }
+      ]
+    }
+  ],
+
+  "max_blocks": 8,
+
+  "presets": [
+    {
+      "name": "Footer",
+      "blocks": [
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" },
+        { "type": "collection_card" }
+      ]
+    }
+  ]
+}
 {% endschema %}

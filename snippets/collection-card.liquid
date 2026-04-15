@@ -1,0 +1,11 @@
+<div class="shop-carousel__card">
+  {% if image != blank %}
+    <img
+      src="{{ image }}"
+      alt="{{ label | escape }}"
+      width="243"
+      height="363">
+  {% endif %}
+
+  <span>{{ label }}</span>
+</div>
