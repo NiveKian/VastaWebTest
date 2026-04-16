@@ -12,14 +12,14 @@
     "socialProf": {
       "type": "socialProf"
     },
-    "bestSell1": {
-      "type": "bestSell"
+    "display1": {
+      "type": "display-bestSell"
     },
     "review": {
       "type": "review"
     },
-    "bestSell2": {
-      "type": "bestSell"
+    "display2": {
+      "type": "display-sugesstions"
     },
     "faqs": {
       "type": "faqs"
@@ -30,9 +30,9 @@
     "shopCarrossel",
     "uvps",
     "socialProf",
-    "bestSell1",
+    "display1",
     "review",
-    "bestSell2",
+    "display2",
     "faqs",
   ]
 }

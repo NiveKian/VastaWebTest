@@ -1,0 +1,156 @@
+<section class="faqs full-width">
+  <div class="faqs__container">
+    <!-- TITLE -->
+    <h2 class="faqs__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <!-- CONTENT -->
+    <div class="faqs__content-wrapper">
+      <p class="faqs__content" id="faqContent">
+        {{ section.settings.content }}
+      </p>
+
+      <button class="faqs__toggle" id="faqToggle" type="button">
+        {{ section.settings.toggle_text }}
+      </button>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  /* SECTION */
+  .faqs {
+    background: linear-gradient(180deg, #ffffff 40.08%, #f6f5f5 98.05%);
+    min-height: 8.44rem; /* ~135px */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem 1rem;
+  }
+
+  /* CONTAINER */
+  .faqs__container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 80rem; /* ~1280px */
+    gap: 1rem;
+  }
+
+  /* TITLE */
+  .faqs__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #252525;
+    padding: 1rem;
+  }
+
+  /* CONTENT WRAPPER */
+  .faqs__content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    position: relative;
+    margin: 2rem;
+  }
+
+  /* CONTENT TEXT (collapsed by default) */
+  .faqs__content {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #555555;
+    max-width: 60rem;
+    line-height: 1.4;
+
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+
+    -webkit-mask-image: linear-gradient(to bottom, black 10%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 10%, transparent 100%);
+  }
+
+  /* EXPANDED STATE */
+  .faqs__content.is-expanded {
+    -webkit-line-clamp: unset;
+    line-clamp: unset;
+    overflow: visible;
+
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  /* TOGGLE BUTTON */
+  .faqs__toggle {
+    font-size: 1.25rem; /* ~20px */
+    font-weight: 400;
+    color: #252525;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    opacity: 0.7;
+
+    margin-top: -1.5rem; /*0.5 pulls it between collapsed lines visually */
+    transition: margin 0.3s ease;
+  }
+
+  .faqs__toggle:hover {
+    opacity: 1;
+  }
+
+  .faqs__content.is-expanded + .faqs__toggle {
+    margin-top: 0;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "FAQ Section",
+
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Vasta Essence: Dive into Our World"
+    },
+    {
+      "type": "textarea",
+      "id": "content",
+      "label": "Content",
+      "default": "Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque. Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque."
+    },
+    {
+      "type": "text",
+      "id": "toggle_text",
+      "label": "Toggle text",
+      "default": "SEE MORE"
+    }
+  ],
+
+  "presets": [
+    {
+      "name": "FAQs"
+    }
+  ]
+}
+{% endschema %}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const content = document.getElementById('faqContent');
+    const toggle = document.getElementById('faqToggle');
+
+    toggle.addEventListener('click', () => {
+      const expanded = content.classList.toggle('is-expanded');
+
+      toggle.textContent = expanded ? 'SEE LESS' : 'SEE MORE';
+    });
+  });
+</script>

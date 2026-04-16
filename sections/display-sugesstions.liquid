@@ -1,0 +1,199 @@
+<section class="best-sell full-width">
+  <div class="best-sell__container">
+    <!-- TITLE -->
+    <h2 class="best-sell__title">
+      {{ section.settings.title }}
+    </h2>
+
+    <!-- CARDS -->
+    <div class="best-sell__grid">
+      {% if section.settings.products != blank %}
+        {% assign products_list = section.settings.products %}
+      {% else %}
+        {% assign products_list = collections.all.products | sort: 'metafields.custom.review_count.value' | reverse %}
+      {% endif %}
+
+      {% for product in products_list limit: 4 %}
+        {% assign rating_raw = product.metafields.custom.rating.value %}
+        {% assign rating = rating_raw | remove: '.0' | plus: 0 %}
+        {% assign review_count = product.metafields.custom.review_count.value | plus: 0 %}
+
+        <div class="best-sell__card">
+          <!-- IMAGE -->
+          <div class="best-sell__image">
+            {% if product.featured_image %}
+              {{ product.featured_image | image_url: width: 600 | image_tag: alt: product.title }}
+            {% endif %}
+          </div>
+
+          <!-- CONTENT -->
+          <div class="best-sell__content">
+            <h3 class="best-sell__name">
+              {{ product.title }}
+            </h3>
+
+            <div class="best-sell__rating">
+              <!-- STARS -->
+              <div class="best-sell__rating--stars">
+                {% for i in (1..5) %}
+                  {% if i <= rating %}
+                    <div>
+                      <img
+                        src="{{ 'icons/star.svg' | asset_url }}"
+                        width="10"
+                        height="10"
+                        alt="star"
+                      >
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+
+              <!-- TEXT -->
+              <span class="best-sell__rating-text"> ({{ rating }} Of {{ review_count }} Reviews) </span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .best-sell {
+    background: #fff;
+    padding: 2rem;
+  }
+
+  .best-sell__container {
+    max-width: 90rem; /* ~1440px */
+    margin: 0 auto;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  /* TITLE */
+  .best-sell__title {
+    font-size: 2.25rem; /* 36px */
+    font-weight: 700;
+    color: #252525;
+  }
+
+  /* GRID */
+  .best-sell__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  /* CARD */
+  .best-sell__card {
+    border-radius: 0.75rem;
+    background: rgba(255, 255, 255, 0.01);
+    box-shadow: 0.25rem 0.25rem 0.82rem rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+
+    transition: transform 0.25s ease;
+  }
+
+  .best-sell__card:hover {
+    transform: translateY(-0.5rem);
+  }
+
+  /* IMAGE */
+  .best-sell__image {
+    background: #f5f6fa;
+    width: 100%;
+    aspect-ratio: 274 / 304;
+  }
+
+  .best-sell__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* CONTENT */
+  .best-sell__content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+
+    padding: 0 1rem 1rem;
+    gap: 0.75rem;
+  }
+
+  /* NAME */
+  .best-sell__name {
+    font-size: 1.125rem; /* 18px */
+    font-weight: 400;
+    color: #252525;
+    text-align: center;
+    padding-top: 1rem;
+  }
+
+  /* RATING */
+  .best-sell__rating {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .best-sell__rating-text {
+    font-size: 0.75rem; /* 12px */
+    font-weight: 500;
+    color: #555;
+  }
+
+  .best-sell__rating--stars {
+    display: flex;
+    align-items: center;
+    gap: 0.1rem;
+  }
+
+  .best-sell__rating--stars img {
+    display: block;
+    width: 0.625rem;
+    height: 0.625rem;
+  }
+
+  /* TABLET + MOBILE */
+  @media (max-width: 1024px) {
+    .best-sell__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Products Suggestions",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section title",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "product_list",
+      "id": "products",
+      "label": "Select products",
+      "limit": 4
+    }
+  ],
+  "presets": [
+    {
+      "name": "You May Also Like"
+    }
+  ]
+}
+{% endschema %}
