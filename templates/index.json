@@ -15,7 +15,8 @@
         "review_text": "With 1600+ 5-star reviews",
         "title": "Lorem ipsum dolor sit amet consectetur",
         "subtitle": "Lorem ipsum dolor sit amet consectetur. Elit elementum rhoncus",
-        "button_text": "View More"
+        "button_text": "View More",
+        "image": "shopify://shop_images/banner-image.png"
       }
     },
     "shopCarrossel": {
@@ -62,18 +63,33 @@
       }
     },
     "display1": {
-      "type": "display-bestSell"
+      "type": "display-bestSell",
+      "settings": {
+        "title": "Best Selling Products",
+        "products": []
+      }
     },
     "review": {
       "type": "review",
-      "settings": {}
+      "settings": {
+        "title": "Real Reviews, Real Experiences",
+        "subtitle": "With 1600+ 5-star reviews"
+      }
     },
     "display2": {
-      "type": "display-sugesstions"
+      "type": "display-sugesstions",
+      "settings": {
+        "title": "You May Also Like",
+        "products": []
+      }
     },
     "faqs": {
       "type": "faqs",
-      "settings": {}
+      "settings": {
+        "title": "Vasta Essence: Dive into Our World",
+        "content": "Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque. Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque.",
+        "toggle_text": "SEE MORE"
+      }
     }
   },
   "order": [
@@ -84,6 +100,6 @@
     "display1",
     "review",
     "display2",
-    "faqs",
+    "faqs"
   ]
 }
