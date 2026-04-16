@@ -14,8 +14,25 @@
     "footer": {
       "type": "footer",
       "settings": {
-        "menu": "",
-        "show_payment_icons": true
+        "newsletter_text": "Enter Your Email To Receive 15% Coupon Immediately",
+        "placeholder": "Enter your email",
+        "button_text": "Give Me 15% OFF",
+        "collections_title": "Popular Collections",
+        "contact_title": "Get In Contact",
+        "phone": "+1 (715) 600-1564",
+        "email": "info@clenchfitness.com",
+        "address": "New Richmond, WI 54017",
+        "info_title": "Information",
+        "info_1": "About Us",
+        "info_2": "Blog",
+        "info_3": "Lorem Ipsum",
+        "info_4": "Lorem Ipsum",
+        "customer_title": "Customer Care",
+        "customer_1": "Contact Us",
+        "customer_2": "Terms of Service",
+        "customer_3": "Privacy Policy",
+        "customer_4": "Accessibility",
+        "copyright": "Copyright © 2023 Clench Fitness. All Right Reserved."
       }
     }
   },
