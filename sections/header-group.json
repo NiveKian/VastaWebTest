@@ -11,23 +11,23 @@
   "type": "header",
   "name": "t:general.header",
   "sections": {
-    "header": {
-      "type": "header",
-      "settings": {
-        "menu": ""
-      }
-    },
     "topbar": {
       "type": "top-bar",
       "settings": {
-        "menu": ""
+        "topbar_email": "info@brand.com",
+        "topbar_message": "WE PAY SHIPPING ON ORDERS OVER $100",
+        "topbar_phone": "+1 (111) 222-3333"
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "menu": "footer"
       }
     },
     "navigation": {
       "type": "navigation",
-      "settings": {
-        "menu": ""
-      }
+      "settings": {}
     }
   },
   "order": [
