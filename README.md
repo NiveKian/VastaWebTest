@@ -7,6 +7,9 @@ Timestamps
 - 13:00 ás 14:00 = quarta-feira
 - 15:00 ás 18:00 = quarta-feira
 - 19:10 ás 21:20 = quarta-feira
+- 11:30 ás 12:40 = quinta-feira
+
+total = 22h40
 
 Todo
 
