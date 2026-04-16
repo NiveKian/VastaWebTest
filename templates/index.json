@@ -27,6 +27,46 @@
     },
     "uvps": {
       "type": "uvps",
+      "blocks": {
+        "uvp_V3FRKY": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/Shipping.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        },
+        "uvp_eNLDA4": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/Person.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        },
+        "uvp_XntjGJ": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/hand-holding-seeding.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        },
+        "uvp_k8Yyre": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/tags.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        }
+      },
+      "block_order": [
+        "uvp_V3FRKY",
+        "uvp_eNLDA4",
+        "uvp_XntjGJ",
+        "uvp_k8Yyre"
+      ],
       "settings": {
         "title": "Shop Smarter, Shop With Vasta"
       }
