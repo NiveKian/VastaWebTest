@@ -11,13 +11,6 @@ Timestamps
 
 total = 22h40
 
-Todo
-
-- arrumar os icons
-- arrumar o collections: shopCarrossel, footer
-- remover o console.log: above social prof
-- fix the search bar: header, footer
-
 # Shopify Theme Project – Setup & Usage Guide
 
 This document explains how to set up the project, run it in development mode, configure the theme inside Shopify, and prepare the required data structures (collections, products, metafields, and metaobjects).
