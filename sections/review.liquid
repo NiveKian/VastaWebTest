@@ -10,7 +10,7 @@
 
       <div class="stars">
         {% for i in (1..5) %}
-          <img src="{{ 'icons/star.svg' | asset_url }}" width="10" height="10" alt="star">
+          <img src="{{ 'star.svg' | asset_url }}" width="10" height="10" alt="star">
         {% endfor %}
       </div>
     </div>
@@ -47,7 +47,7 @@
             {% for i in (1..5) %}
               {% if i <= rating %}
                 <img
-                  src="{{ 'icons/star.svg' | asset_url }}"
+                  src="{{ 'star.svg' | asset_url }}"
                   width="10"
                   height="10"
                   alt="star"

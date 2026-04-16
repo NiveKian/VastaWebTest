@@ -6,7 +6,14 @@ Timestamps
 - 00:00 ás 02:50 = quarta feira
 - 13:00 ás 14:00 = quarta-feira
 - 15:00 ás 18:00 = quarta-feira
-- 19:10 ás 21:00 = quarta-feira
+- 19:10 ás 21:20 = quarta-feira
+
+Todo
+
+- arrumar os icons
+- arrumar o collections: shopCarrossel, footer
+- remover o console.log: above social prof
+- fix the search bar: header, footer
 
 # Shopify Theme Project – Setup & Usage Guide
 

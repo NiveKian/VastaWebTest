@@ -3,11 +3,12 @@
     <!-- Left: Email -->
     <div class="top-bar__item top-bar__item--icon">
       <img
-        src="{{ 'icons/email.svg' | asset_url }}"
+        src="{{ 'email.svg' | asset_url }}"
         alt="Email icon"
         width="16"
         height="16"
-        class="top-bar__icon">
+        class="top-bar__icon"
+      >
       <span>{{ section.settings.topbar_email }}</span>
     </div>
 
@@ -19,11 +20,12 @@
     <!-- Right: Phone -->
     <div class="top-bar__item top-bar__item--icon">
       <img
-        src="{{ 'icons/phone.svg' | asset_url }}"
+        src="{{ 'phone.svg' | asset_url }}"
         alt="Phone icon"
         width="16"
         height="16"
-        class="top-bar__icon">
+        class="top-bar__icon"
+      >
       <span>{{ section.settings.topbar_phone }}</span>
     </div>
   </div>
@@ -41,7 +43,6 @@
     display: flex;
     align-items: center;
   }
-
 
   /* Inner content aligned to page width */
 
@@ -101,25 +102,27 @@
 {% endstylesheet %}
 
 {% schema %}
-  {
-    "name": "t:general.top-bar",
-    "settings": [
-      {
-        "type": "text",
-        "id": "topbar_email",
-        "label": "Email",
-        "default": "info@brand.com"
-      }, {
-        "type": "text",
-        "id": "topbar_message",
-        "label": "Center message",
-        "default": "WE PAY SHIPPING ON ORDERS OVER $100"
-      }, {
-        "type": "text",
-        "id": "topbar_phone",
-        "label": "Phone",
-        "default": "+1 (111) 222-3333"
-      }
-    ]
-  }
+{
+  "name": "t:general.top-bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "topbar_email",
+      "label": "Email",
+      "default": "info@brand.com"
+    },
+    {
+      "type": "text",
+      "id": "topbar_message",
+      "label": "Center message",
+      "default": "WE PAY SHIPPING ON ORDERS OVER $100"
+    },
+    {
+      "type": "text",
+      "id": "topbar_phone",
+      "label": "Phone",
+      "default": "+1 (111) 222-3333"
+    }
+  ]
+}
 {% endschema %}

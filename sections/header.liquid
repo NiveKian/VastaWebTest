@@ -1,13 +1,13 @@
 <header class="header full-width" role="banner">
   <div class="header__container">
-
     <!-- Mobile Menu -->
     <div class="header__menu">
       <img
-        src="{{ 'icons/menu.svg' | asset_url }}"
+        src="{{ 'menu.svg' | asset_url }}"
         alt="Menu"
         width="20"
-        height="20">
+        height="20"
+      >
       <span>MENU</span>
     </div>
 
@@ -16,10 +16,11 @@
       <!-- Logo -->
       <div class="header__logo">
         <img
-          src="{{ 'icons/logo-vasta.svg' | asset_url }}"
+          src="{{ 'logo-vasta.svg' | asset_url }}"
           alt="Vasta Logo"
           width="120"
-          height="40">
+          height="40"
+        >
       </div>
 
       <!-- Search -->
@@ -27,24 +28,27 @@
         <input
           type="text"
           placeholder="Search"
-          class="header__search-input">
+          class="header__search-input"
+        >
         <button class="header__search-button">
           <span>Search</span>
           <img
-            src="{{ 'icons/search.svg' | asset_url }}"
+            src="{{ 'search.svg' | asset_url }}"
             alt="Search"
             width="16"
-            height="16">
+            height="16"
+          >
         </button>
       </div>
 
       <!-- Cart -->
       <div class="header__cart">
         <img
-          src="{{ 'icons/cart.svg' | asset_url }}"
+          src="{{ 'cart.svg' | asset_url }}"
           alt="Cart"
           width="30"
-          height="30">
+          height="30"
+        >
         <span>CART</span>
       </div>
     </div>
@@ -52,10 +56,11 @@
     <!-- Cart -->
     <div class="header__cart--mobile">
       <img
-        src="{{ 'icons/cart.svg' | asset_url }}"
+        src="{{ 'cart.svg' | asset_url }}"
         alt="Cart"
         width="30"
-        height="30">
+        height="30"
+      >
       <span>CART</span>
     </div>
   </div>
@@ -121,7 +126,7 @@
 
   .header__search-input::placeholder {
     font-size: clamp(0.75rem, 1.1vw, 1rem);
-    color: #C2C3CC;
+    color: #c2c3cc;
   }
 
   .header__search-button {
@@ -152,7 +157,6 @@
   .header__cart--mobile {
     display: none;
   }
-
 
   @media (max-width: 1024px) {
     .header__menu {
@@ -189,18 +193,17 @@
       cursor: pointer;
     }
   }
-
 {% endstylesheet %}
 
 {% schema %}
-  {
-    "name": "t:general.header",
-    "settings": [
-      {
-        "type": "link_list",
-        "id": "menu",
-        "label": "t:labels.menu"
-      }
-    ]
-  }
+{
+  "name": "t:general.header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "t:labels.menu"
+    }
+  ]
+}
 {% endschema %}

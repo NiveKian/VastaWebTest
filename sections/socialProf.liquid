@@ -1,16 +1,13 @@
 <!-- Checks if the background is defined in blocks or use preset -->
 {% assign bg_image = section.settings.bg_image %}
 {% if bg_image != blank %}
-  console.log("test");
   {% assign bg_url = bg_image | image_url %}
 {% else %}
   {% assign bg_url = 'imgs/social-background.png' | asset_url %}
 {% endif %}
 
 <section class="social-prof full-width" style="--bg-image: url('{{ bg_url }}')">
-
   <div class="social-prof__container">
-
     <!-- EXPLORE -->
     <div class="social-prof__explore">
       <h2>{{ section.settings.title }}</h2>
@@ -23,28 +20,25 @@
 
     <!-- COMMENTS -->
     <div class="social-prof__comments">
-
       {% if section.blocks.size > 0 %}
-
         {% for block in section.blocks %}
-
           <div class="social-prof__comment">
-
             <!-- PERSON -->
             <div class="social-prof__persona">
-
               {% if block.settings.image != blank %}
                 <img
                   src="{{ block.settings.image | image_url: width: 150 }}"
                   width="65"
                   height="65"
-                  alt="persona">
+                  alt="persona"
+                >
               {% else %}
                 <img
                   src="{{ 'imgs/persona.png' | asset_url }}"
                   width="65"
                   height="65"
-                  alt="persona">
+                  alt="persona"
+                >
               {% endif %}
 
               <div>
@@ -53,63 +47,57 @@
                 <div class="stars">
                   {% for i in (1..5) %}
                     <img
-                      src="{{ 'icons/star.svg' | asset_url }}"
+                      src="{{ 'star.svg' | asset_url }}"
                       width="12"
-                      height="12">
+                      height="12"
+                    >
                   {% endfor %}
                 </div>
               </div>
-
             </div>
 
             <!-- TEXT -->
             <p class="social-prof__text">
               {{ block.settings.text }}
             </p>
-
           </div>
-
         {% endfor %}
 
       {% else %}
-
         <!-- FALLBACK -->
 
         {% for i in (1..2) %}
           <div class="social-prof__comment">
-
             <div class="social-prof__persona">
               <img
                 src="{{ 'imgs/persona.png' | asset_url }}"
                 width="65"
-                height="65">
+                height="65"
+              >
 
               <div class="social-prof__persona-side">
                 <span>John R.</span>
                 <div class="stars">
                   {% for i in (1..5) %}
                     <img
-                      src="{{ 'icons/star.svg' | asset_url }}"
+                      src="{{ 'star.svg' | asset_url }}"
                       width="12"
-                      height="12">
+                      height="12"
+                    >
                   {% endfor %}
                 </div>
               </div>
             </div>
 
             <p class="social-prof__text">
-              Lorem ipsum dolor sit amet consectetur. Volutpat fames diam volutpat a. Ultricies lacinia eu cras massa odio
+              Lorem ipsum dolor sit amet consectetur. Volutpat fames diam volutpat a. Ultricies lacinia eu cras massa
+              odio
             </p>
-
           </div>
         {% endfor %}
-
       {% endif %}
-
     </div>
-
   </div>
-
 </section>
 
 {% stylesheet %}
@@ -123,16 +111,15 @@
 
   /* BACKGROUND IMAGE + GRADIENT */
   .social-prof::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
 
-    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, transparent 30%), linear-gradient(0.21deg, rgba(0, 0, 0, 0.9) 9.2%, transparent 45.55%), linear-gradient(73.01deg, rgba(0, 0, 0, 0.9) 34.28%, transparent 45.81%), var(--bg-image);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.85) 0%, transparent 30%),
+      linear-gradient(0.21deg, rgba(0, 0, 0, 0.9) 9.2%, transparent 45.55%),
+      linear-gradient(73.01deg, rgba(0, 0, 0, 0.9) 34.28%, transparent 45.81%), var(--bg-image);
     background-size: cover;
-    background-position: center
-    , center
-    , center
-    , calc(50% + 200px) center;
+    background-position: center, center, center, calc(50% + 200px) center;
 
     z-index: 0;
   }
@@ -243,10 +230,10 @@
     }
 
     .social-prof::before {
-      background: linear-gradient(180deg, #000000 26.79%, rgba(0, 0, 0, 0) 70.73%), linear-gradient(270deg, #000000 10%, rgba(0, 0, 0, 0) 30%, #000000 103.2%), var(--bg-image);
+      background: linear-gradient(180deg, #000000 26.79%, rgba(0, 0, 0, 0) 70.73%),
+        linear-gradient(270deg, #000000 10%, rgba(0, 0, 0, 0) 30%, #000000 103.2%), var(--bg-image);
       background-size: cover;
-      background-position: center
-      , center, calc(50% - 100px) calc(50% + 100px);
+      background-position: center, center, calc(50% - 100px) calc(50% + 100px);
       /* calc1 = eixo x; calc2 = eixo y */
     }
   }
@@ -275,66 +262,72 @@
 {% endstylesheet %}
 
 {% schema %}
-  {
-    "name": "Social Proof",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "default": "Cherished Favorites",
-        "label": "Title"
-      }, {
-        "type": "text",
-        "id": "subtitle",
-        "default": "Explore the Harmony of Exceptional Quality and Customer Praise",
-        "label": "Subtitle"
-      }, {
-        "type": "text",
-        "id": "button_text",
-        "default": "View More",
-        "label": "Button text"
-      }, {
-        "type": "image_picker",
-        "id": "bg_image",
-        "label": "Background image",
-        "info": "For optimal display, use an image with a width of at least 1200px."
-      }
-    ],
-    "blocks": [
-      {
-        "type": "comment",
-        "name": "Comment",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "image",
-            "label": "Persona image"
-          }, {
-            "type": "text",
-            "id": "name",
-            "default": "John R.",
-            "label": "Name"
-          }, {
-            "type": "text",
-            "id": "text",
-            "default": "Lorem ipsum dolor sit amet consectetur. Volutpat fames diam volutpat a. Ultricies lacinia eu cras massa odio",
-            "label": "Review text"
-          }
-        ]
-      }
-    ],
-    "max_blocks": 2,
-    "presets": [
-      {
-        "name": "Social Proof",
-        "blocks": [
-          {
-            "type": "comment"
-          }, {
-            "type": "comment"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Social Proof",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "default": "Cherished Favorites",
+      "label": "Title"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "default": "Explore the Harmony of Exceptional Quality and Customer Praise",
+      "label": "Subtitle"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "default": "View More",
+      "label": "Button text"
+    },
+    {
+      "type": "image_picker",
+      "id": "bg_image",
+      "label": "Background image",
+      "info": "For optimal display, use an image with a width of at least 1200px."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "comment",
+      "name": "Comment",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Persona image"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "default": "John R.",
+          "label": "Name"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "default": "Lorem ipsum dolor sit amet consectetur. Volutpat fames diam volutpat a. Ultricies lacinia eu cras massa odio",
+          "label": "Review text"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 2,
+  "presets": [
+    {
+      "name": "Social Proof",
+      "blocks": [
+        {
+          "type": "comment"
+        },
+        {
+          "type": "comment"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
