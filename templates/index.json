@@ -15,7 +15,8 @@
         "review_text": "With 1600+ 5-star reviews",
         "title": "Lorem ipsum dolor sit amet consectetur",
         "subtitle": "Lorem ipsum dolor sit amet consectetur. Elit elementum rhoncus",
-        "button_text": "View More"
+        "button_text": "View More",
+        "image": "shopify://shop_images/banner-image.png"
       }
     },
     "shopCarrossel": {
@@ -26,6 +27,46 @@
     },
     "uvps": {
       "type": "uvps",
+      "blocks": {
+        "uvp_V3FRKY": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/Shipping.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        },
+        "uvp_eNLDA4": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/Person.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        },
+        "uvp_XntjGJ": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/hand-holding-seeding.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        },
+        "uvp_k8Yyre": {
+          "type": "uvp",
+          "settings": {
+            "icon": "shopify://shop_images/tags.svg",
+            "fallback_icon": "icons/Shipping.svg",
+            "text": "Lorem ipsum dolor sit amet consectetur"
+          }
+        }
+      },
+      "block_order": [
+        "uvp_V3FRKY",
+        "uvp_eNLDA4",
+        "uvp_XntjGJ",
+        "uvp_k8Yyre"
+      ],
       "settings": {
         "title": "Shop Smarter, Shop With Vasta"
       }
@@ -62,18 +103,33 @@
       }
     },
     "display1": {
-      "type": "display-bestSell"
+      "type": "display-bestSell",
+      "settings": {
+        "title": "Best Selling Products",
+        "products": []
+      }
     },
     "review": {
       "type": "review",
-      "settings": {}
+      "settings": {
+        "title": "Real Reviews, Real Experiences",
+        "subtitle": "With 1600+ 5-star reviews"
+      }
     },
     "display2": {
-      "type": "display-sugesstions"
+      "type": "display-sugesstions",
+      "settings": {
+        "title": "You May Also Like",
+        "products": []
+      }
     },
     "faqs": {
       "type": "faqs",
-      "settings": {}
+      "settings": {
+        "title": "Vasta Essence: Dive into Our World",
+        "content": "Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque. Pellentesque cras adipiscing tempus libero vel nullam mauris tellus. Aliquam ultrices tellus consequat amet, lectus aliquam est in neque.",
+        "toggle_text": "SEE MORE"
+      }
     }
   },
   "order": [
@@ -84,6 +140,6 @@
     "display1",
     "review",
     "display2",
-    "faqs",
+    "faqs"
   ]
 }
