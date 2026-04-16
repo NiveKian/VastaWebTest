@@ -20,33 +20,19 @@
 
     <!-- TRACK -->
     <div class="shop-carousel__track" id="shopCarouselTrack">
-      {% if section.blocks.size > 0 %}
-        {% for block in section.blocks %}
-          <div class="shop-carousel__card">
-            {% if block.settings.image != blank %}
-              <img
-                src="{{ block.settings.image | image_url: width: 800 }}"
-                alt="{{ block.settings.label | escape }}"
-                width="243"
-                height="363"
-              >
-            {% endif %}
-            <span>{{ block.settings.label }}</span>
-          </div>
-        {% endfor %}
-      {% else %}
-        {% for i in (1..6) %}
-          <div class="shop-carousel__card">
+      {% for collection in collections limit: 10 %}
+        <div class="shop-carousel__card">
+          {% if collection.featured_image != blank %}
             <img
-              src="{{ 'imgs/collection-' | append: i | append: '.png' | asset_url }}"
-              alt="Default collection {{ i }}"
+              src="{{ collection.featured_image | image_url: width: 800 }}"
+              alt="{{ collection.title | escape}}"
               width="243"
               height="363"
             >
-            <span>Lorem Ipsum</span>
-          </div>
-        {% endfor %}
-      {% endif %}
+          {% endif %}
+          <span> {{ collection.title }} </span>
+        </div>
+      {% endfor %}
     </div>
 
     <!-- RIGHT BUTTON -->
@@ -192,51 +178,6 @@
       "id": "title",
       "label": "Title",
       "default": "Lorem Ipsum"
-    }
-  ],
-  "blocks": [
-    {
-      "type": "card",
-      "name": "Carousel Card",
-      "settings": [
-        {
-          "type": "image_picker",
-          "id": "image",
-          "label": "Image"
-        },
-        {
-          "type": "text",
-          "id": "label",
-          "label": "Text",
-          "default": "Lorem Ipsum"
-        }
-      ]
-    }
-  ],
-  "max_blocks": 12,
-  "presets": [
-    {
-      "name": "Shop Carousel",
-      "blocks": [
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        },
-        {
-          "type": "card"
-        }
-      ]
     }
   ]
 }

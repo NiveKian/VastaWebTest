@@ -29,36 +29,21 @@
 
         <div class="footer__cards">
           <!-- Card Block Builder -->
-          {% if section.blocks.size > 0 %}
-            {% for block in section.blocks %}
-              <div class="footer__card" {{ block.shopify_attributes }}>
-                {% if block.settings.image != blank %}
-                  {{ block.settings.image | image_url: width: 800 | image_tag: alt: block.settings.label }}
-                {% else %}
-                  <img
-                    src="{{ 'imgs/collection-1.png' | asset_url }}"
-                    width="110"
-                    height="164"
-                    alt="fallback"
-                  >
-                {% endif %}
-                <span>{{ block.settings.label }}</span>
-              </div>
-            {% endfor %}
-          {% else %}
-            <!-- FAILSAFE FOR DEVMODE -->
-            {% for i in (1..4) %}
-              <div class="footer__card">
+          {% for collection in collections limit: 4 %}
+            <div class="footer__card">
+              {% if collection.featured_image != blank %}
+                {{ collection.featured_image | image_url: width: 800 | image_tag: alt: collection.title }}
+              {% else %}
                 <img
-                  src="{{ 'imgs/collection-' | append: i | append: '.png' | asset_url }}"
+                  src="{{ collection.featured_image | image_url: width: 800  }}"
                   width="110"
                   height="164"
-                  alt="default collection {{ i }}"
+                  alt="fallback"
                 >
-                <span>Lorem Ipsum</span>
-              </div>
-            {% endfor %}
-          {% endif %}
+              {% endif %}
+              <span>{{ collection.title }}</span>
+            </div>
+          {% endfor %}
         </div>
       </div>
 
